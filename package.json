@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sandbox": "tsx ./src/app/sandbox.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
@@ -17,7 +18,8 @@
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.19.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.2.0",
