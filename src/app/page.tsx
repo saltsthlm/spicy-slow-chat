@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       <ChatFeed messages={["hello", "world"]} />
-      <Button>Click me</Button>
+      <Button>Send</Button>
       <MessageInput />
     </div>
   );
