@@ -8,3 +8,4 @@ export async function postMessageAction(formData: FormData) {
   await chatFeature.service.postMessage({ content: message!.toString() });
   revalidatePath("/");
 }
+
