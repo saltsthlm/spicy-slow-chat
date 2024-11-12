@@ -11,12 +11,17 @@ export const messagesTable = pgTable("messages", {
   content: varchar().notNull(),
 });
 
-
 export function createRepository() {
   return {
     async getAllMessages() {
       return await db.select().from(messagesTable);
-    }
+    },
+    
+    async storeMessage() {
+      await db
+        .insert(messagesTable)
+        .values({ userId: 2, timeStamp: 2323, content: "I love you Daniel!" });
+    },
   };
 }
 
