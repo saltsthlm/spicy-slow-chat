@@ -1,15 +1,19 @@
 import { ChatFeed } from "@/features/chat/ui/chat-feed";
 import { Button } from "@/features/chat/ui/button";
 import { MessageInput } from "@/features/chat/ui/message-input";
-import { FetchMessages } from "@/lib/data";
+import { chatFeature } from "@/features/chat/instance";
 
 export default async function Home() {
-  const messages = await FetchMessages();
+  const messages = (await chatFeature.service.getAllMessages()).map(
+    (message) => {
+      return message.content;
+    }
+  );
 
   console.log(messages);
   return (
     <div>
-      <ChatFeed messages={["hello", "world"]} />
+      <ChatFeed messages={messages} />
       <Button>Send</Button>
       <MessageInput />
     </div>
