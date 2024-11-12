@@ -1,6 +1,6 @@
-export function creatRepository() {
+export function createRepository() {
   // eslint-disable-next-line prefer-const
-  let messages = [];
+  let messages: Message[] = [];
   async function getMessages() {
     return messages;
   }
