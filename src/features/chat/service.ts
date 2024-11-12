@@ -5,7 +5,12 @@ export function createService(repository: Repository) {
     return await repository.getMessages();
   }
 
+  async function postMessage(message: Message) {
+    return await repository.postMessage(message);
+  }
+
   return {
     getAllMessagesFromRepository,
+    postMessage,
   };
 }

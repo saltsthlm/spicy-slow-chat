@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createFeature } from "./feature";
-const chatFeature = createFeature();
+import { chatFeature } from "./instance";
 
 export async function postMessageAction(formData: FormData) {
   const message = formData.get("message");
