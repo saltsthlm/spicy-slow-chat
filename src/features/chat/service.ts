@@ -1,8 +1,6 @@
-import { createRepository } from "./repository";
+import { Repository } from "./repository";
 
-export function createServiceChat() {
-  const repository = createRepository();
-
+export function createService(repository: Repository) {
   async function getAllMessagesFromRepository() {
     return await repository.getMessages();
   }

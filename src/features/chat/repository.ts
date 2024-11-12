@@ -8,3 +8,5 @@ export function createRepository() {
     getMessages,
   };
 }
+
+export type Repository = ReturnType<typeof createRepository>;

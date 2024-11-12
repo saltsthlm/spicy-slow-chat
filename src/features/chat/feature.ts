@@ -1,7 +1,10 @@
-import { createServiceChat } from "./service";
+import { createRepository } from "./repository";
+import { createService } from "./service";
 
 export function createFeature() {
-  const service = createServiceChat();
+  const repository = createRepository();
+
+  const service = createService(repository);
   return {
     service,
   };
