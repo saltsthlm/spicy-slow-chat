@@ -1,8 +1,6 @@
 import "dotenv/config";
 import { Message } from "./types";
-import { messagesTable } from "./db";
-import { db } from "./db";
-
+import { messagesTable, db } from "./db";
 
 export function createRepository() {
   return {
