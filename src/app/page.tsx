@@ -1,5 +1,4 @@
 import { ChatFeed } from "@/features/chat/ui/chat-feed";
-import { Button } from "@/features/chat/ui/button";
 import { MessageInput } from "@/features/chat/ui/message-input";
 import { chatFeature } from "@/features/chat/instance";
 
@@ -14,7 +13,6 @@ export default async function Home() {
   return (
     <div>
       <ChatFeed messages={messages} />
-      <Button>Send</Button>
       <MessageInput />
     </div>
   );

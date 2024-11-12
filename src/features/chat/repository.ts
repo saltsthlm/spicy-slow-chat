@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import { Message } from "./types";
 
 export const db = drizzle(process.env.DATABASE_URL!);
 
@@ -16,11 +17,11 @@ export function createRepository() {
     async getAllMessages() {
       return await db.select().from(messagesTable);
     },
-    
-    async storeMessage() {
+
+    async storeMessage(message: Message) {
       await db
         .insert(messagesTable)
-        .values({ userId: 2, timeStamp: 2323, content: "I love you Daniel!" });
+        .values({ userId: 2, timeStamp: 2323, content: message.content });
     },
   };
 }
