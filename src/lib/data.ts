@@ -1,7 +1,9 @@
-const db = drizzle({ schema });
+import { db } from "@/db";
+import { messagesTable } from "@/db/schema";
 
-export async function fetchMessages() {
-  const data = await db.select().from(messages);
 
+export async function FetchMessages() {
+  const data = await db.select().from(messagesTable);
   return data;
 }
+
