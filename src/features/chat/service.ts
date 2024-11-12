@@ -7,7 +7,12 @@ export function createService(repository: Repository) {
       return await repository.getAllMessages();
     },
     async postMessage(message: Message) {
-      return await repository.storeMessage(message);
+      const test = {
+        userId: Math.ceil(Math.random() * 10000),
+        ...message,
+        timestamp: Date.now(),
+      };
+      return await repository.storeMessage(test);
     },
   };
 }
