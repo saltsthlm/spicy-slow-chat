@@ -14,7 +14,7 @@ export const messagesTable = pgTable("messages", {
 
 export function createRepository() {
   return {
-    async getMessages() {
+    async getAllMessages() {
       return await db.select().from(messagesTable);
     }
   };
