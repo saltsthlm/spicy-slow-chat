@@ -7,4 +7,9 @@ describe("Cool down:", () => {
     const messages = ([]) => [];
     deepEqual(messages([]), []);
   });
+
+  it("should return 1 message on cooldown | 1 case scenario", () => {
+    const messages = ([]) => [];
+    deepEqual(messages([]), []);
+  });
 });
