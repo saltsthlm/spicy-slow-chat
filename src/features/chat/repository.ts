@@ -11,7 +11,11 @@ export function createRepository() {
     async storeMessage(message: Message) {
       await db
         .insert(messagesTable)
-        .values({ userId: 2, timeStamp: 2323, content: message.content });
+        .values({
+          userId: message.userId,
+          timeStamp: message.timestamp,
+          content: message.content,
+        });
     },
   };
 }

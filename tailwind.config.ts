@@ -61,3 +61,5 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+//tailwind-typography plugin | add a pros class in home component someway
