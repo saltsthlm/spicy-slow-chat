@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import { Message } from "./types";
 
 function calculateCoolDown(latestFetchDate: bigint, messageTimestamp: bigint) {
-  return messageTimestamp + BigInt(3600 * 1000) < latestFetchDate;
+  return messageTimestamp + BigInt(3600 * 1000) <= latestFetchDate;
 }
 
 async function getAllMessages(latestFetchDate: bigint, messages: Message[]) {
@@ -28,12 +28,12 @@ describe("Cool down:", () => {
   });
 
   it("should return 1 message after cool down | 1 case scenario", async () => {
-    const latestFetchDate = BigInt(Date.now());
+    const latestFetchDate = BigInt(0);
     const messages: Message[] = [
       {
         username: "user3",
-        content: "This message will be on cooldown.",
-        timestamp: latestFetchDate - BigInt(4 * 3600 * 1000), // 4 hours ago
+        content: "This message will not be on cooldown.",
+        timestamp: latestFetchDate - BigInt(3600 * 1000),
       },
     ];
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
