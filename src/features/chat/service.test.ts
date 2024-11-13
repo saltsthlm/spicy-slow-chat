@@ -1,8 +1,13 @@
 import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
 import { Message } from "./types";
-
 const oneHour = 3600000;
+const latestFetchDate = BigInt(0);
+const messageAfterCoolDown =   {
+  username: "user3",
+  content: "This message will not be on cool down.",
+  timestamp: latestFetchDate - BigInt(oneHour),
+}
 
 function calculateCoolDown(latestFetchDate: bigint, messageTimestamp: bigint) {
   return messageTimestamp + BigInt(oneHour) <= latestFetchDate;
@@ -30,14 +35,7 @@ describe("Cool down:", () => {
   });
 
   it("should return 1 message after cool down | 1 case scenario", async () => {
-    const latestFetchDate = BigInt(0);
-    const messages: Message[] = [
-      {
-        username: "user3",
-        content: "This message will not be on cooldown.",
-        timestamp: latestFetchDate - BigInt(oneHour),
-      },
-    ];
+    const messages: Message[] = [messageAfterCoolDown];
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
 
     deepEqual(filteredMessages, messages);
