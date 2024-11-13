@@ -9,7 +9,7 @@ export function createService(repository: Repository) {
     async postMessage(message: Message) {
       const test = {
         ...message,
-        userId: Math.ceil(Math.random() * 10000),
+        username: Math.ceil(Math.random() * 10000).toString(),
         timestamp: BigInt(Date.now()),
       };
       return await repository.storeMessage(test);
