@@ -11,7 +11,7 @@ export function createRepository() {
     async storeMessage(message: Message) {
       await db.insert(messagesTable).values({
         username: message.username,
-        timeStamp: message.timestamp,
+        timestamp: message.timestamp,
         content: message.content,
       });
     },
