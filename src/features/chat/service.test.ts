@@ -2,8 +2,10 @@ import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
 import { Message } from "./types";
 
+const oneHour = 3600000;
+
 function calculateCoolDown(latestFetchDate: bigint, messageTimestamp: bigint) {
-  return messageTimestamp + BigInt(3600 * 1000) <= latestFetchDate;
+  return messageTimestamp + BigInt(oneHour) <= latestFetchDate;
 }
 
 async function getAllMessages(latestFetchDate: bigint, messages: Message[]) {
@@ -33,7 +35,7 @@ describe("Cool down:", () => {
       {
         username: "user3",
         content: "This message will not be on cooldown.",
-        timestamp: latestFetchDate - BigInt(3600 * 1000),
+        timestamp: latestFetchDate - BigInt(oneHour),
       },
     ];
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
