@@ -8,8 +8,8 @@ export function createService(repository: Repository) {
     },
     async postMessage(message: Message) {
       const test = {
-        userId: Math.ceil(Math.random() * 10000),
         ...message,
+        userId: Math.ceil(Math.random() * 10000),
         timestamp: Date.now(),
       };
       return await repository.storeMessage(test);
