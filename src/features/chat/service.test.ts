@@ -7,10 +7,10 @@ function calculateCoolDown(latestFetchDate: bigint, messageTimestamp: bigint) {
 }
 
 async function getAllMessages(latestFetchDate: bigint, messages: Message[]) {
- return messages.map((message) =>
+  return messages.map((message) =>
     calculateCoolDown(latestFetchDate, message.timestamp)
       ? message
-      : { ...message, content: "Message is on cool down" },
+      : { ...message, content: "Message is on cool down" }
   );
 }
 
@@ -25,5 +25,19 @@ describe("Cool down:", () => {
   it.skip("should return 1 message on cool down | 1 case scenario", () => {
     const messages = ([]) => [];
     deepEqual(messages([]), []);
+  });
+
+  it("should return 1 message after cool down | 1 case scenario", async () => {
+    const latestFetchDate = BigInt(Date.now());
+    const messages: Message[] = [
+      {
+        username: "user3",
+        content: "This message will be on cooldown.",
+        timestamp: latestFetchDate - BigInt(4 * 3600 * 1000), // 4 hours ago
+      },
+    ];
+    const filteredMessages = await getAllMessages(latestFetchDate, messages);
+
+    deepEqual(filteredMessages, messages);
   });
 });
