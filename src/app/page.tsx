@@ -1,6 +1,4 @@
-import { ChatFeed } from "@/features/chat/ui/chat-feed";
-import { MessageInput } from "@/features/chat/ui/message-input";
-import { chatFeature } from "@/features/chat/instance";
+import { chatFeature, MessageInput, ChatFeed, Card } from "@/features";
 
 export default async function Home() {
   const messages = (await chatFeature.service.getAllMessages()).map(
@@ -12,7 +10,9 @@ export default async function Home() {
   console.log(messages);
   return (
     <div>
-      <ChatFeed messages={messages} />
+      <Card>
+        <ChatFeed messages={messages} />
+      </Card>
       <MessageInput />
     </div>
   );
