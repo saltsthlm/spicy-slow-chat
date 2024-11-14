@@ -1,6 +1,6 @@
 import { deepEqual, equal } from "node:assert/strict";
 import { describe, it } from "node:test";
-import { Message } from "./types";
+import { Message } from "../types";
 const oneHour = 3600000;
 const latestFetchDate = BigInt(0);
 
@@ -38,7 +38,7 @@ async function getAllMessages(latestFetchDate: bigint, messages: Message[]) {
   return messages.map((message) =>
     calculateCoolDown(latestFetchDate, message.timestamp)
       ? message
-      : { ...message, content: "Message is on cool down" }
+      : { ...message, content: "Message is on cool down" },
   );
 }
 
@@ -105,27 +105,3 @@ describe("Cool down:", () => {
     deepEqual(filteredMessages, [mutatedMessage, messageAfterCoolDown]);
   });
 });
-
-
-describe("Tokens", () => {
-  it("should return zero tokens when user don't have tokens | 0 case scenario", async () => {
-    const tokens = {
-      weekly: 0,
-      daily: 0,
-    };
-    const fetches = [];
-    const result = calculateTokens(fetches, tokens);
-
-    deepEqual(result, {
-      weekly: 0,
-      daily: 0,
-    });
-  });
-});
-
-function calculateTokens(fetches, tokens) {
-  return {
-    weekly: 0,
-    daily: 0,
-  };
-}
