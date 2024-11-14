@@ -1,4 +1,6 @@
+import { getMondayOfCurrentWeek } from "./helper";
 import { filterByFetchDateAndUsername } from "./logic/filter";
+import { calculateRemainingTokens } from "./logic/tokens";
 import { Repository } from "./repository";
 import { MessageInsert } from "./types";
 
@@ -33,9 +35,24 @@ export function createService(repository: Repository) {
       return await repository.storeMessage(test);
     },
 
-    async getAllFetchesForToday() {
-      const todaysFetches = await repository.getAllFetchsForToday();
-      console.log("today's fetches", todaysFetches);
+    async getUserTokens(username: string) {
+      let tokens = { weekly: 2, daily: 1 };
+
+      const dayInMillis = 24 * 60 * 60 * 1000;
+      const startDay = BigInt(getMondayOfCurrentWeek(new Date()).getTime());
+      for (let day = 0; day < 7; day++) {
+        const fromInMillis = startDay + BigInt(day * dayInMillis);
+        const toInMillis = startDay + BigInt((day + 1) * dayInMillis);
+        const numberOfFetches =
+          (await repository.getCountOfFetchesForUserBetween(
+            username,
+            fromInMillis,
+            toInMillis,
+          )) || 0;
+        tokens = calculateRemainingTokens(numberOfFetches, tokens);
+      }
+
+      return tokens.weekly + tokens.daily;
     },
 
     async storeFetch(username: string) {
