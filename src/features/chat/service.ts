@@ -56,7 +56,8 @@ export function createService(repository: Repository) {
     },
 
     async storeFetch(username: string) {
-      await repository.storeFetch(username);
+      if (await this.getUserTokens(username))
+        await repository.storeFetch(username);
     },
 
     async seedMessagesTable(message: MessageInsert) {
