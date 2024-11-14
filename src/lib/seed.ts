@@ -34,7 +34,7 @@ function generateMessages(amountOfUsers: number) {
 
 function sortMessages(unsortedMessages: MessageInsert[]) {
   return unsortedMessages.sort((a, b) => {
-    return Number(a.timestamp) - Number(b.timestamp);
+    return Number(b.timestamp) - Number(a.timestamp);
   });
 }
 

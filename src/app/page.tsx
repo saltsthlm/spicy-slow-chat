@@ -8,11 +8,7 @@ import {
 import { UserProfile } from "@/features/user/ui/user-profile";
 
 export default async function Home() {
-  const messages = (await chatFeature.service.getAllMessages()).map(
-    (message) => {
-      return message.content;
-    }
-  );
+  const messages = await chatFeature.service.getAllMessages()
 
   return (
     <div>
