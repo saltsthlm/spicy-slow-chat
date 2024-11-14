@@ -2,9 +2,9 @@ import { Repository } from "./repository";
 import { Message } from "./types";
 
 export function createService(repository: Repository) {
-  const latestFetchDate = BigInt(Date.now());
   return {
     async getAllMessages() {
+      const latestFetchDate = BigInt(Date.now());
       return( await repository
         .getAllMessages())
         .map((message) =>
