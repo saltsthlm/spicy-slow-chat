@@ -38,7 +38,7 @@ async function getAllMessages(latestFetchDate: bigint, messages: Message[]) {
   return messages.map((message) =>
     calculateCoolDown(latestFetchDate, message.timestamp)
       ? message
-      : { ...message, content: "Message is on cool down" },
+      : { ...message, content: "Message is on cool down" }
   );
 }
 
@@ -79,7 +79,8 @@ describe("Cool down:", () => {
     deepEqual(filteredMessages, messages);
   });
 
-  it("should return 1 message and on cool down and 1 after cool down | many case scenario", async () => {
+  // ask Marcus
+  it("should return 1 message and Afer cool down and 1 after On cool down | many case scenario", async () => {
     const messages = [messageAfterCoolDown, messageOnCoolDown];
 
     const mutatedMessage = {
@@ -90,5 +91,17 @@ describe("Cool down:", () => {
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
 
     deepEqual(filteredMessages, [messageAfterCoolDown, mutatedMessage]);
+  });
+
+  it("should return 1 message and On cool down and 1 After cool down | many case scenario", async () => {
+    const messages = [messageOnCoolDown, messageAfterCoolDown];
+
+    const mutatedMessage = {
+      ...messageOnCoolDown,
+      content: "Message is on cool down",
+    };
+
+    const filteredMessages = await getAllMessages(latestFetchDate, messages);
+    deepEqual(filteredMessages, [mutatedMessage, messageAfterCoolDown]);
   });
 });
