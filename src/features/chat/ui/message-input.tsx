@@ -3,7 +3,6 @@ import { fetchMessagesAction, postMessageAction } from "../actions";
 import { Input } from "@/features/chat/ui/input";
 
 export function MessageInput() {
-  
   return (
     <>
       <form
@@ -18,7 +17,7 @@ export function MessageInput() {
         />
         <Button type="submit">Send</Button>
       </form>
-      <Button onClick={fetchMessagesAction}></Button>
+      <Button onClick={fetchMessagesAction}>Fetch</Button>
     </>
   );
 }
