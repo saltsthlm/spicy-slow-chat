@@ -6,17 +6,18 @@ export function seedMessages(amountOfUsers: number) {
   Array.from({ length: amountOfUsers }).forEach(() => {
     const username = faker.person.firstName();
     const amountOfMessages = Math.ceil(Math.random() * 4);
-
+    const startDate = new Date("2024-10-01")
+    const endDate = new Date()
     Array.from({ length: amountOfMessages }).map(() => {
       const content = `${faker.word.noun()} ${faker.word.verb()} ${faker.word.adverb()}`;
 
       unsortedMessages.push({
         username,
         content,
-        timestamp: BigInt(faker.date.anytime().getTime()),
+        timestamp: BigInt(faker.date.between({from: startDate, to: endDate}).getTime()),
       });
     });
   });
+  return unsortedMessages
 }
 
-seedMessages(5);
