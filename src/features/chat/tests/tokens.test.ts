@@ -1,8 +1,8 @@
 import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
 
-describe("Tokens", () => {
-  it("should return zero tokens when user don't have tokens | 0 case scenario", async () => {
+describe("Token Calculation:", () => {
+  it("should return initial tokens when there are 0 fetches | 0 case scenario", async () => {
     const tokens = { weekly: 0, daily: 0 };
     const fetches = 0;
     const result = calculateRemainingTokens(fetches, tokens);
