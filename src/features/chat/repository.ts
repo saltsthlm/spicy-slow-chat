@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { MessageInsert } from "./types";
 import { messagesTable, db, fetchTable } from "./db";
-import { gte } from "drizzle-orm";
+import { desc, eq, gte } from "drizzle-orm";
 
 export function createRepository() {
   const startOfTheDay = BigInt(new Date().setHours(0, 0, 0, 0));
@@ -35,6 +35,17 @@ export function createRepository() {
         .select()
         .from(fetchTable)
         .where(gte(fetchTable.timestamp, startOfTheDay));
+    },
+
+    async getLatestFetchTimestampFor(username: string) {
+      return (
+        await db
+          .select({ timestamp: fetchTable.timestamp })
+          .from(fetchTable)
+          .where(eq(fetchTable.username, username))
+          .orderBy(desc(fetchTable.timestamp))
+          .limit(1)
+      )[0].timestamp;
     },
   };
 }
