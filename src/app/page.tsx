@@ -5,7 +5,7 @@ import {
   Card,
   CardTitle,
 } from "@/features";
-import { UserProfile } from "@/features/user/user-profile";
+import { UserProfile } from "@/features/user/ui/user-profile";
 
 export default async function Home() {
   const messages = (await chatFeature.service.getAllMessages()).map(
