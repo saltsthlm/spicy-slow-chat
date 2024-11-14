@@ -1,3 +1,4 @@
+import { filterByFetchDateAndUsername } from "./logic/filter";
 import { Repository } from "./repository";
 import { MessageInsert } from "./types";
 
@@ -8,11 +9,19 @@ export function createService(repository: Repository) {
         getCurrentUserName(),
       );
 
-      return (await repository.getAllMessages()).map((message) =>
-        calculateCoolDown(latestFetchDate, message.timestamp)
-          ? message
-          : { ...message, content: "Message is on cool down" },
-      );
+      return (await repository.getAllMessages())
+        .filter((message) =>
+          filterByFetchDateAndUsername(
+            message,
+            latestFetchDate,
+            getCurrentUserName(),
+          ),
+        )
+        .map((message) =>
+          calculateCoolDown(latestFetchDate, message.timestamp)
+            ? message
+            : { ...message, content: "Message is on cool down" },
+        );
     },
 
     async postMessage(content: string, username: string) {
