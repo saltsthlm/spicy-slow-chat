@@ -9,7 +9,7 @@ export async function postMessageAction(formData: FormData) {
   revalidatePath("/");
 }
 
-export async function fetchMessagesAction() {
-  await chatFeature.service.fetchMessages();
+export async function getAllMessagesAction() {
+  await chatFeature.service.getAllMessages();
   revalidatePath("/");
 }

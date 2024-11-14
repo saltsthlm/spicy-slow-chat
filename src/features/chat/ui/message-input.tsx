@@ -1,5 +1,5 @@
 import { Button } from "@/features/chat/ui/button";
-import { fetchMessagesAction, postMessageAction } from "../actions";
+import { getAllMessagesAction, postMessageAction } from "../actions";
 import { Input } from "@/features/chat/ui/input";
 import { GlobeIcon, SendIcon } from "lucide-react";
 
@@ -20,7 +20,7 @@ export function MessageInput() {
           <SendIcon />
         </Button>
       </form>
-      <Button onClick={fetchMessagesAction}>
+      <Button onClick={getAllMessagesAction}>
         <GlobeIcon />
       </Button>
     </>
