@@ -7,7 +7,7 @@ describe("Tokens", () => {
       weekly: 0,
       daily: 0,
     };
-    const fetches = [];
+    const fetches = 0;
     const result = calculateTokens(fetches, tokens);
 
     deepEqual(result, {
@@ -15,11 +15,29 @@ describe("Tokens", () => {
       daily: 0,
     });
   });
+
+  it("should return right amount of tokens | 1 case scenario", () => {
+    const tokens = {
+      weekly: 2,
+      daily: 1,
+    };
+    const fetches = 1;
+    const result = calculateTokens(fetches, tokens);
+    deepEqual(result, {
+      weekly: 2,
+      daily: 0,
+    });
+  });
 });
 
 function calculateTokens(fetches, tokens) {
-  return {
-    weekly: 0,
-    daily: 0,
-  };
+  if (fetches === 0) {
+    return {
+      weekly: 0,
+      daily: 0,
+    };
+  }
+  if (tokens.daily === 1) {
+    return { ...tokens, daily: 0 };
+  }
 }
