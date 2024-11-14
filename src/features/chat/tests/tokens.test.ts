@@ -23,6 +23,13 @@ describe("Tokens", () => {
     const result = calculateTokens(fetches, tokens);
     deepEqual(result, { weekly: 1, daily: 0 });
   });
+
+  it("should return right amount of tokens | many case scenario", () => {
+    const tokens = { weekly: 2, daily: 1 };
+    const fetches = 3;
+    const result = calculateTokens(fetches, tokens);
+    deepEqual(result, { weekly: 0, daily: 0 });
+  });
 });
 
 export type Token = { weekly: number; daily: number };
