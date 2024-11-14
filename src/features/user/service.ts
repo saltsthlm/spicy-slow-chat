@@ -1,7 +1,11 @@
+import { createRepository } from "./repository";
+
+const repository = createRepository();
+
 export function createUserService() {
   return {
-    getUser() {
-      return "John";
+    getUser(name: string) {
+      return repository.loginUserInDb(name);
     },
   };
 }
