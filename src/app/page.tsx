@@ -11,10 +11,9 @@ export default async function Home() {
   const messages = (await chatFeature.service.getAllMessages()).map(
     (message) => {
       return message.content;
-    },
+    }
   );
 
-  console.log(messages);
   return (
     <div>
       <UserProfile />

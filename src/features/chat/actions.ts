@@ -5,6 +5,9 @@ import { chatFeature } from "./instance";
 
 export async function postMessageAction(formData: FormData) {
   const message = formData.get("message");
+  if (!message) {
+    return;
+  }
   await chatFeature.service.postMessage({ content: message!.toString() });
   revalidatePath("/");
 }
