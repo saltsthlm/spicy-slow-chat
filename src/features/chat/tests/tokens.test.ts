@@ -1,5 +1,6 @@
 import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
+import { calculateRemainingTokens } from "../logic/tokens";
 
 describe("Token Calculation:", () => {
   it("should return initial tokens when there are 0 fetches | 0 case scenario", async () => {
@@ -31,24 +32,3 @@ describe("Token Calculation:", () => {
     deepEqual(result, { weekly: 0, daily: 0 });
   });
 });
-
-export type Token = { weekly: number; daily: number };
-
-function calculateRemainingTokens(
-  numberOfFetches: number,
-  initialTokens: Token,
-): Token {
-  if (numberOfFetches === 0) return initialTokens;
-
-  let { weekly, daily } = initialTokens;
-
-  if (daily === 1) {
-    daily = 0;
-    numberOfFetches--;
-  }
-  if (numberOfFetches > 0) {
-    weekly -= numberOfFetches;
-  }
-
-  return { weekly, daily };
-}
