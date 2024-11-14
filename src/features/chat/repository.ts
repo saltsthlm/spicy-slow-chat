@@ -49,13 +49,15 @@ export function createRepository() {
 
     async getLatestFetchTimestampFor(username: string) {
       return (
-        await db
-          .select({ timestamp: fetchTable.timestamp })
-          .from(fetchTable)
-          .where(eq(fetchTable.username, username))
-          .orderBy(desc(fetchTable.timestamp))
-          .limit(1)
-      )[0].timestamp;
+        (
+          await db
+            .select({ timestamp: fetchTable.timestamp })
+            .from(fetchTable)
+            .where(eq(fetchTable.username, username))
+            .orderBy(desc(fetchTable.timestamp))
+            .limit(1)
+        ).pop()?.timestamp || BigInt(Number.NEGATIVE_INFINITY)
+      );
     },
   };
 }
