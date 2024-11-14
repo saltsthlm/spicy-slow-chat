@@ -1,11 +1,9 @@
-import { deepEqual, equal } from "node:assert/strict";
+import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
 import { MessageInsert } from "../types";
 const oneHour = 3600000;
 const latestFetchDate = BigInt(0);
-
-// const ON_COOL_DOWN_CONTENT = "Message is on cool down";
-
+const ON_COOL_DOWN_CONTENT = "Message is on cool down";
 const messageAfterCoolDown = {
   username: "user3",
   content: "This message will NOT be on cool down.",
@@ -41,7 +39,7 @@ async function getAllMessages(
   return messages.map((message) =>
     calculateCoolDown(latestFetchDate, message.timestamp)
       ? message
-      : { ...message, content: "Message is on cool down" }
+      : { ...message, content: ON_COOL_DOWN_CONTENT }
   );
 }
 
@@ -63,7 +61,7 @@ describe("Cool down:", () => {
   it("should return 1 message on cool down | 1 case scenario on cool down", async () => {
     const message: MessageInsert = messageOnCoolDown;
 
-    const mutatedMessage = { ...message, content: "Message is on cool down" };
+    const mutatedMessage = { ...message, content: ON_COOL_DOWN_CONTENT };
 
     const filteredMessages = await getAllMessages(latestFetchDate, [message]);
 
@@ -88,7 +86,7 @@ describe("Cool down:", () => {
 
     const mutatedMessage = {
       ...messageOnCoolDown,
-      content: "Message is on cool down",
+      content: ON_COOL_DOWN_CONTENT,
     };
 
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
@@ -101,7 +99,7 @@ describe("Cool down:", () => {
 
     const mutatedMessage = {
       ...messageOnCoolDown,
-      content: "Message is on cool down",
+      content: ON_COOL_DOWN_CONTENT,
     };
 
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
