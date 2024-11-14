@@ -42,3 +42,7 @@ export function createService(repository: Repository) {
 function calculateCoolDown(latestFetchDate: bigint, messageTimestamp: bigint) {
   return messageTimestamp + BigInt(5 * 1000) < latestFetchDate;
 }
+
+export function getCurrentUserName(): string {
+  return "John Wick";
+}
