@@ -56,7 +56,7 @@ export function createRepository() {
             .where(eq(fetchTable.username, username))
             .orderBy(desc(fetchTable.timestamp))
             .limit(1)
-        ).pop()?.timestamp || BigInt(Number.NEGATIVE_INFINITY)
+        ).pop()?.timestamp || BigInt(Number.MIN_SAFE_INTEGER)
       );
     },
   };
