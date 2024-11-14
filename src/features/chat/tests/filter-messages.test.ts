@@ -2,19 +2,16 @@ import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
 import { MessageSelect } from "../types";
 import { USER_MESSAGES } from "./test-data";
+import { filterByFetchDateAndUsername } from "../logic/filter";
 
 describe("Fetches filter", () => {
   it("should return empty array when input messages are empty | 0 case", async () => {
     const messages: MessageSelect[] = [];
-    const latestFetchDate = BigInt(
-      new Date("Novemver 11, 2024 00:00:00").getTime(),
-    );
+    const latestFetchDate = BigInt(1699890100000);
     const user = "John Wick";
 
-    const filteredMessages = getMessagesByDateAndUser(
-      messages,
-      latestFetchDate,
-      user,
+    const filteredMessages = messages.filter((message) =>
+      filterByFetchDateAndUsername(message, latestFetchDate, user),
     );
 
     deepEqual(filteredMessages, []);
@@ -26,10 +23,8 @@ describe("Fetches filter", () => {
     const latestFetchDate = BigInt(1699890100000);
     const user = "John Wick";
 
-    const filteredMessages = getMessagesByDateAndUser(
-      messages,
-      latestFetchDate,
-      user,
+    const filteredMessages = messages.filter((message) =>
+      filterByFetchDateAndUsername(message, latestFetchDate, user),
     );
 
     deepEqual(filteredMessages, messages.slice(0, 3));
@@ -41,23 +36,10 @@ describe("Fetches filter", () => {
     const latestFetchDate = BigInt(1699890100000);
     const user = "dave_design";
 
-    const filteredMessages = getMessagesByDateAndUser(
-      messages,
-      latestFetchDate,
-      user,
+    const filteredMessages = messages.filter((message) =>
+      filterByFetchDateAndUsername(message, latestFetchDate, user),
     );
 
     deepEqual(filteredMessages, [...messages.slice(0, 3), messages[4]]);
   });
 });
-
-function getMessagesByDateAndUser(
-  messages: MessageSelect[],
-  latestFetchDate: bigint,
-  user: string,
-): MessageSelect[] {
-  return messages.filter(
-    (message) =>
-      message.timestamp <= latestFetchDate || message.username == user,
-  );
-}
