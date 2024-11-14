@@ -41,3 +41,4 @@ function calculateTokens(fetches, tokens) {
     return { ...tokens, daily: 0 };
   }
 }
+
