@@ -1,6 +1,7 @@
 import { Button } from "@/features/chat/ui/button";
 import { fetchMessagesAction, postMessageAction } from "../actions";
 import { Input } from "@/features/chat/ui/input";
+import { GlobeIcon, SendIcon } from "lucide-react";
 
 export function MessageInput() {
   return (
@@ -15,9 +16,13 @@ export function MessageInput() {
           className="p-4"
           placeholder="Write your message"
         />
-        <Button type="submit">Send</Button>
+        <Button type="submit">
+          <SendIcon />
+        </Button>
       </form>
-      <Button onClick={fetchMessagesAction}>Fetch</Button>
+      <Button onClick={fetchMessagesAction}>
+        <GlobeIcon />
+      </Button>
     </>
   );
 }
