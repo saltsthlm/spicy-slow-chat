@@ -4,6 +4,7 @@ import {
   ChatFeed,
   Card,
   CardTitle,
+  CardHeader,
 } from "@/features";
 import { UserProfile } from "@/features/user/ui/user-profile";
 
