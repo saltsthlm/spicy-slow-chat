@@ -1,11 +1,9 @@
 import "dotenv/config";
 import { MessageInsert } from "./types";
 import { messagesTable, db, fetchTable } from "./db";
-import { desc, eq, gte } from "drizzle-orm";
+import { and, count, desc, eq, gte, lt } from "drizzle-orm";
 
 export function createRepository() {
-  const startOfTheDay = BigInt(new Date().setHours(0, 0, 0, 0));
-
   return {
     async getAllMessages() {
       return await db.select().from(messagesTable);
@@ -30,11 +28,23 @@ export function createRepository() {
       });
     },
 
-    async getAllFetchsForToday() {
-      return await db
-        .select()
-        .from(fetchTable)
-        .where(gte(fetchTable.timestamp, startOfTheDay));
+    async getCountOfFetchesForUserBetween(
+      username: string,
+      from: bigint,
+      to: bigint,
+    ) {
+      return (
+        await db
+          .select({ count: count() })
+          .from(fetchTable)
+          .where(
+            and(
+              eq(fetchTable.username, username),
+              gte(fetchTable.timestamp, from),
+              lt(fetchTable.timestamp, to),
+            ),
+          )
+      ).pop()?.count;
     },
 
     async getLatestFetchTimestampFor(username: string) {
