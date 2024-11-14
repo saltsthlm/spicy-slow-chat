@@ -1,4 +1,5 @@
 import { Repository } from "./repository";
+import { MessageInsert } from "./types";
 
 export function createService(repository: Repository) {
   return {
@@ -8,7 +9,7 @@ export function createService(repository: Repository) {
       return (await repository.getAllMessages()).map((message) =>
         calculateCoolDown(latestFetchDate, message.timestamp)
           ? message
-          : { ...message, content: "Message is on cool down" },
+          : { ...message, content: "Message is on cool down" }
       );
     },
 
@@ -28,6 +29,10 @@ export function createService(repository: Repository) {
 
     async storeFetch(username: string) {
       await repository.storeFetch(username);
+    },
+
+    async seedMessagesTable(message: MessageInsert) {
+      return await repository.storeMessage(message);
     },
   };
 }
