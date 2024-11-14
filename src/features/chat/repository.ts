@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { Message } from "./types";
+import { MessageInsert } from "./types";
 import { messagesTable, db, fetchTable } from "./db";
 
 export function createRepository() {
@@ -12,7 +12,7 @@ export function createRepository() {
       return await db.select().from(messagesTable);
     },
 
-    async storeMessage(message: Message) {
+    async storeMessage(message: MessageInsert) {
       await db.insert(messagesTable).values({
         username: message.username,
         timestamp: message.timestamp,

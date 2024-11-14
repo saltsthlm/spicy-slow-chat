@@ -1,6 +1,6 @@
 import { deepEqual, equal } from "node:assert/strict";
 import { describe, it } from "node:test";
-import { Message } from "../types";
+import { MessageInsert } from "../types";
 const oneHour = 3600000;
 const latestFetchDate = BigInt(0);
 
@@ -34,11 +34,14 @@ function calculateCoolDown(latestFetchDate: bigint, messageTimestamp: bigint) {
   return messageTimestamp + BigInt(oneHour) <= latestFetchDate;
 }
 
-async function getAllMessages(latestFetchDate: bigint, messages: Message[]) {
+async function getAllMessages(
+  latestFetchDate: bigint,
+  messages: MessageInsert[]
+) {
   return messages.map((message) =>
     calculateCoolDown(latestFetchDate, message.timestamp)
       ? message
-      : { ...message, content: "Message is on cool down" },
+      : { ...message, content: "Message is on cool down" }
   );
 }
 
@@ -51,14 +54,14 @@ describe("Cool down:", () => {
   });
 
   it("should return 1 message after cool down | 1 case scenario", async () => {
-    const messages: Message[] = [messageAfterCoolDown];
+    const messages: MessageInsert[] = [messageAfterCoolDown];
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
 
     deepEqual(filteredMessages, messages);
   });
 
   it("should return 1 message on cool down | 1 case scenario on cool down", async () => {
-    const message: Message = messageOnCoolDown;
+    const message: MessageInsert = messageOnCoolDown;
 
     const mutatedMessage = { ...message, content: "Message is on cool down" };
 
@@ -68,7 +71,7 @@ describe("Cool down:", () => {
   });
 
   it("should return 2 messages after cool down | many case scenario after cool down", async () => {
-    const messages: Message[] = messagesAfterCoolDown;
+    const messages: MessageInsert[] = messagesAfterCoolDown;
 
     // const mappedMessages = messages.map((message) => {
     //   return { ...message, content: "Message is after cool down" };

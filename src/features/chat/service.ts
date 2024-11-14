@@ -1,20 +1,18 @@
 import { Repository } from "./repository";
-import { Message } from "./types";
+import { MessageInsert } from "./types";
 
 export function createService(repository: Repository) {
   return {
     async getAllMessages() {
       const latestFetchDate = BigInt(Date.now());
-      return( await repository
-        .getAllMessages())
-        .map((message) =>
-          calculateCoolDown(latestFetchDate, message.timestamp)
-            ? message
-            : { ...message, content: "Message is on cool down" }
-        );
+      return (await repository.getAllMessages()).map((message) =>
+        calculateCoolDown(latestFetchDate, message.timestamp)
+          ? message
+          : { ...message, content: "Message is on cool down" }
+      );
     },
 
-    async postMessage(message: Message) {
+    async postMessage(message: MessageInsert) {
       const test = {
         ...message,
         username: Math.ceil(Math.random() * 10000).toString(),
