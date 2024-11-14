@@ -16,19 +16,30 @@ describe("Tokens", () => {
     const result = calculateTokens(fetches, tokens);
     deepEqual(result, { weekly: 2, daily: 0 });
   });
+
+  it("should return right amount of tokens | many case scenario", () => {
+    const tokens = { weekly: 2, daily: 1 };
+    const fetches = 2;
+    const result = calculateTokens(fetches, tokens);
+    deepEqual(result, { weekly: 1, daily: 0 });
+  });
 });
 
 export type Token = { weekly: number; daily: number };
 
 function calculateTokens(fetches: number, tokens: Token): Token {
   if (fetches === 0) {
-    return {
-      weekly: 0,
-      daily: 0,
-    };
+    return tokens;
   }
-  if (tokens.daily === 1) {
-    return { ...tokens, daily: 0 };
+  let { weekly, daily } = tokens;
+
+  if (daily === 1) {
+    daily = 0;
+    fetches--;
   }
-  return tokens;
+  if (fetches > 0) {
+    weekly -= fetches;
+  }
+
+  return { weekly, daily };
 }
