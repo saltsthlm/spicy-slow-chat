@@ -1,7 +1,12 @@
-export function ChatFeed ({messages}:{messages: string[]}) {
-  return (
-    messages.map((message, index)=>{
-      return <div key={index}>{message}</div>
-    })
-  )
+export function ChatFeed({ messages }: { messages: string[] }) {
+  return messages.map((message, index) => {
+    return (
+      <div
+        className="bg-primary text-primary-foreground rounded-lg px-3 py-1 text-sm"
+        key={index}
+      >
+        {message}
+      </div>
+    );
+  });
 }
