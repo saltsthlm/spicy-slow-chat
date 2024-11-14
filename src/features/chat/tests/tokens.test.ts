@@ -30,7 +30,8 @@ describe("Tokens", () => {
   });
 });
 
-function calculateTokens(fetches, tokens) {
+export type Token = { weekly: number; daily: number };
+function calculateTokens(fetches: number, tokens: Token): Token {
   if (fetches === 0) {
     return {
       weekly: 0,
@@ -40,5 +41,5 @@ function calculateTokens(fetches, tokens) {
   if (tokens.daily === 1) {
     return { ...tokens, daily: 0 };
   }
+  return tokens;
 }
-
