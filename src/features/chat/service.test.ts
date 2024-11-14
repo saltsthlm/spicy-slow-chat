@@ -46,8 +46,8 @@ describe("Cool down:", () => {
 
     const mutatedMessage = { ...message, content: "Message is on cool down" };
 
-    const filteredMessages = await getAllMessages(latestFetchDate, messages);
+    const filteredMessages = await getAllMessages(latestFetchDate, [message]);
 
-    equal(filteredMessages, mutatedMessage);
+    deepEqual(filteredMessages, [mutatedMessage]);
   });
 });
