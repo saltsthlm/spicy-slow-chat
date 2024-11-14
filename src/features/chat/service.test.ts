@@ -3,6 +3,9 @@ import { describe, it } from "node:test";
 import { Message } from "./types";
 const oneHour = 3600000;
 const latestFetchDate = BigInt(0);
+
+// const ON_COOL_DOWN_CONTENT = "Message is on cool down";
+
 const messageAfterCoolDown = {
   username: "user3",
   content: "This message will NOT be on cool down.",
@@ -74,5 +77,18 @@ describe("Cool down:", () => {
     const filteredMessages = await getAllMessages(latestFetchDate, messages);
 
     deepEqual(filteredMessages, messages);
+  });
+
+  it("should return 1 message and on cool down and 1 after cool down | many case scenario", async () => {
+    const messages = [messageAfterCoolDown, messageOnCoolDown];
+
+    const mutatedMessage = {
+      ...messageOnCoolDown,
+      content: "Message is on cool down",
+    };
+
+    const filteredMessages = await getAllMessages(latestFetchDate, messages);
+
+    deepEqual(filteredMessages, [messageAfterCoolDown, mutatedMessage]);
   });
 });
