@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sandbox": "tsx ./src/app/sandbox.ts",
+    "sandbox": "tsx ./src/lib/seed.ts",
     "test": "tsx --watch --test"
   },
   "dependencies": {
