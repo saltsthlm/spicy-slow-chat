@@ -34,6 +34,21 @@ describe("Fetches filter", () => {
 
     deepEqual(filteredMessages, messages.slice(0, 3));
   });
+
+  it("should return only 3 messages where timestamp <= latest fetchdate and 1 made by current user | many case", async () => {
+    const messages: MessageSelect[] = USER_MESSAGES;
+
+    const latestFetchDate = BigInt(1699890100000);
+    const user = "dave_design";
+
+    const filteredMessages = getMessagesByDateAndUser(
+      messages,
+      latestFetchDate,
+      user,
+    );
+
+    deepEqual(filteredMessages, [...messages.slice(0, 3), messages[4]]);
+  });
 });
 
 function getMessagesByDateAndUser(
@@ -41,5 +56,8 @@ function getMessagesByDateAndUser(
   latestFetchDate: bigint,
   user: string,
 ): MessageSelect[] {
-  return messages.filter((message) => message.timestamp <= latestFetchDate);
+  return messages.filter(
+    (message) =>
+      message.timestamp <= latestFetchDate || message.username == user,
+  );
 }
