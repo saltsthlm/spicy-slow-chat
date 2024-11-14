@@ -1,5 +1,4 @@
 import { Repository } from "./repository";
-import { MessageInsert } from "./types";
 
 export function createService(repository: Repository) {
   return {
@@ -13,10 +12,10 @@ export function createService(repository: Repository) {
       );
     },
 
-    async postMessage(message: MessageInsert) {
+    async postMessage(content: string, username: string) {
       const test = {
-        ...message,
-        username: Math.ceil(Math.random() * 10000).toString(),
+        content,
+        username,
         timestamp: BigInt(Date.now()),
       };
       return await repository.storeMessage(test);
