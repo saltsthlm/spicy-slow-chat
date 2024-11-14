@@ -25,6 +25,10 @@ export function createService(repository: Repository) {
       const todaysFetches = await repository.getAllFetchsForToday();
       console.log("today's fetches", todaysFetches);
     },
+
+    async storeFetch(username: string) {
+      await repository.storeFetch(username);
+    },
   };
 }
 

@@ -8,10 +8,6 @@ export function createRepository() {
 
   return {
     async getAllMessages() {
-      await db.insert(fetchTable).values({
-        username: "John Wick",
-        timestamp: BigInt(Date.now()),
-      });
       return await db.select().from(messagesTable);
     },
 
@@ -25,6 +21,13 @@ export function createRepository() {
 
     async getAllFetches() {
       return await db.select().from(fetchTable);
+    },
+
+    async storeFetch(username: string) {
+      await db.insert(fetchTable).values({
+        username: username,
+        timestamp: BigInt(Date.now()),
+      });
     },
 
     async getAllFetchsForToday() {
