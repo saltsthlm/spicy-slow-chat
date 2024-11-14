@@ -1,8 +1,9 @@
 import { Button } from "@/features/chat/ui/button";
-import { postMessageAction } from "../actions";
+import { fetchMessagesAction, postMessageAction } from "../actions";
 import { Input } from "@/features/chat/ui/input";
 
 export function MessageInput() {
+  
   return (
     <>
       <form
