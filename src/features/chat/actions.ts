@@ -2,18 +2,18 @@
 
 import { revalidatePath } from "next/cache";
 import { chatFeature } from "./instance";
+import { getCurrentUserName } from "./service";
 
-const USER = "John Wick";
 export async function postMessageAction(formData: FormData) {
   const message = formData.get("message") as string;
   if (!message) {
     return;
   }
-  await chatFeature.service.postMessage(message, USER);
+  await chatFeature.service.postMessage(message, getCurrentUserName());
   revalidatePath("/");
 }
 
 export async function fetchAction() {
-  await chatFeature.service.storeFetch(USER);
+  await chatFeature.service.storeFetch(getCurrentUserName());
   revalidatePath("/");
 }
