@@ -22,6 +22,9 @@ export function createRepository() {
     async getAllFetches() {
       return await db.select().from(fetchTable);
     },
+    async getAllFetchsForToday() {
+      return await db.select().from(fetchTable).where(lt(timestamp));
+    },
   };
 }
 
