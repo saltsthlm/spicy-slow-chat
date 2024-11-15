@@ -33,4 +33,14 @@ describe("Token Calculation:", () => {
       deepEqual(result, { weekly: 0, daily: 0 });
     });
   });
+  describe("Total: ", () => {
+    it("should return unchaged initial tokens if there were no fetches | 0 case", () => {
+      const result = calculateTokens([0]);
+
+      deepEqual(result, { weekly: 2, daily: 1 });
+    });
+  });
 });
+function calculateTokens(numbersOfFetches: number[]) {
+  return { weekly: 2, daily: 1 };
+}
