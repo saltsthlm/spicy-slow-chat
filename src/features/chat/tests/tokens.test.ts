@@ -39,8 +39,20 @@ describe("Token Calculation:", () => {
 
       deepEqual(result, { weekly: 2, daily: 1 });
     });
+
+    it("should return right amount of tokens | many case", () => {
+      const result = calculateTokens([0, 1, 0, 1, 2, 0, 1]);
+
+      deepEqual(result, { weekly: 1, daily: 0 });
+    });
   });
 });
+
 function calculateTokens(numbersOfFetches: number[]) {
-  return { weekly: 2, daily: 1 };
+  const initialTokens = { weekly: 2, daily: 1 };
+
+  return numbersOfFetches.reduce((tokens, numberOfFetches) => {
+    const refilledTokens = { ...tokens, daily: 1 };
+    return calculateRemainingTokens(numberOfFetches, refilledTokens);
+  }, initialTokens);
 }
