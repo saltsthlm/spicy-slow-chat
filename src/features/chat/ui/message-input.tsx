@@ -21,9 +21,9 @@ export function MessageInput() {
           <SendIcon />
         </Button>
       </form>
-      <Button variant="secondary" size="icon" onClick={fetchAction}>
-        <GlobeIcon />
-      </Button>
+        <Button variant="secondary" size="icon" onClick={fetchAction}>
+          <GlobeIcon />
+        </Button>
     </Card>
   );
 }
