@@ -5,11 +5,11 @@ import { calculateRemainingTokens, calculateTokens } from "../logic/tokens";
 describe("Token Calculation:", () => {
   describe("by day:", () => {
     it("should return initial tokens when there are 0 fetches | 0 case scenario", async () => {
-      const initialTokens = { weekly: 0, daily: 0 };
+      const initialTokens = { weekly: 1, daily: 1 };
       const fetches = 0;
       const result = calculateRemainingTokens(fetches, initialTokens);
 
-      deepEqual(result, { weekly: 0, daily: 0 });
+      deepEqual(result, { weekly: 1, daily: 1 });
     });
 
     it("should return right amount of tokens | 1 case scenario", () => {
