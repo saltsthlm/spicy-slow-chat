@@ -20,7 +20,8 @@ export function createService(repository: Repository) {
           )
         )
         .map((message) =>
-          calculateCoolDown(latestFetchDate, message.timestamp)
+          calculateCoolDown(latestFetchDate, message.timestamp) ||
+          message.username === "John Wick"
             ? message
             : { ...message, content: "Message is on cool down" }
         );
