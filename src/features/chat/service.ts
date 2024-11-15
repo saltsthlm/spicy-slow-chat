@@ -1,6 +1,6 @@
 import { numberOfdaysSinceMonday } from "./helper";
 import { filterByFetchDateAndUsername } from "./logic/filter";
-import { calculateRemainingTokens, calculateTokens } from "./logic/tokens";
+import { calculateTokens } from "./logic/tokens";
 import { Repository } from "./repository";
 import { MessageInsert } from "./types";
 
@@ -8,7 +8,7 @@ export function createService(repository: Repository) {
   return {
     async getAllMessages() {
       const latestFetchDate = await repository.getLatestFetchTimestampFor(
-        getCurrentUserName(),
+        getCurrentUserName()
       );
 
       return (await repository.getAllMessages())
@@ -16,13 +16,13 @@ export function createService(repository: Repository) {
           filterByFetchDateAndUsername(
             message,
             latestFetchDate,
-            getCurrentUserName(),
-          ),
+            getCurrentUserName()
+          )
         )
         .map((message) =>
           calculateCoolDown(latestFetchDate, message.timestamp)
             ? message
-            : { ...message, content: "Message is on cool down" },
+            : { ...message, content: "Message is on cool down" }
         );
     },
 
@@ -41,7 +41,7 @@ export function createService(repository: Repository) {
       const today = new Date();
       const daysSinceMonday = numberOfdaysSinceMonday(today);
       const startDayInMillis = BigInt(
-        today.setHours(0, 0, 0, 0) - daysSinceMonday * dayInMillis,
+        today.setHours(0, 0, 0, 0) - daysSinceMonday * dayInMillis
       );
 
       const numbersOfFetches = await Promise.all(
@@ -52,10 +52,10 @@ export function createService(repository: Repository) {
             (await repository.getCountOfFetchesForUserBetween(
               username,
               fromInMillis,
-              toInMillis,
+              toInMillis
             )) || 0
           );
-        }),
+        })
       );
 
       const tokens = calculateTokens(numbersOfFetches);
@@ -75,7 +75,7 @@ export function createService(repository: Repository) {
 }
 
 function calculateCoolDown(latestFetchDate: bigint, messageTimestamp: bigint) {
-  return messageTimestamp + BigInt(5 * 1000) < latestFetchDate;
+  return messageTimestamp + BigInt(60 * 1000) < latestFetchDate;
 }
 
 export function getCurrentUserName(): string {

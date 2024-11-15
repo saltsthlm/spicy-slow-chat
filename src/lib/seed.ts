@@ -40,4 +40,4 @@ function sortMessages(unsortedMessages: MessageInsert[]) {
   });
 }
 
-seedMessages(5);
+seedMessages(2);
