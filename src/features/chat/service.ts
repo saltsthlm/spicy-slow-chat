@@ -1,6 +1,6 @@
-import { getMondayOfCurrentWeek } from "./helper";
+import { numberOfdaysSinceMonday } from "./helper";
 import { filterByFetchDateAndUsername } from "./logic/filter";
-import { calculateRemainingTokens } from "./logic/tokens";
+import { calculateRemainingTokens, calculateTokens } from "./logic/tokens";
 import { Repository } from "./repository";
 import { MessageInsert } from "./types";
 
@@ -36,21 +36,29 @@ export function createService(repository: Repository) {
     },
 
     async getUserTokens(username: string) {
-      let tokens = { weekly: 2, daily: 1 };
-
       const dayInMillis = 24 * 60 * 60 * 1000;
-      const startDay = BigInt(getMondayOfCurrentWeek(new Date()).getTime());
-      for (let day = 0; day < 7; day++) {
-        const fromInMillis = startDay + BigInt(day * dayInMillis);
-        const toInMillis = startDay + BigInt((day + 1) * dayInMillis);
-        const numberOfFetches =
-          (await repository.getCountOfFetchesForUserBetween(
-            username,
-            fromInMillis,
-            toInMillis,
-          )) || 0;
-        tokens = calculateRemainingTokens(numberOfFetches, tokens);
-      }
+
+      const today = new Date();
+      const daysSinceMonday = numberOfdaysSinceMonday(today);
+      const startDayInMillis = BigInt(
+        today.setHours(0, 0, 0, 0) - daysSinceMonday * dayInMillis,
+      );
+
+      const numbersOfFetches = await Promise.all(
+        Array.from({ length: daysSinceMonday + 1 }).map(async (_, day) => {
+          const fromInMillis = startDayInMillis + BigInt(day * dayInMillis);
+          const toInMillis = startDayInMillis + BigInt((day + 1) * dayInMillis);
+          return (
+            (await repository.getCountOfFetchesForUserBetween(
+              username,
+              fromInMillis,
+              toInMillis,
+            )) || 0
+          );
+        }),
+      );
+
+      const tokens = calculateTokens(numbersOfFetches);
 
       return tokens.weekly + tokens.daily;
     },
