@@ -2,12 +2,14 @@ import { chatFeature } from "@/features";
 import { MessageInsert } from "@/features/chat/types";
 import { faker } from "@faker-js/faker";
 
-export function seedMessages(amountOfUsers: number) {
+export async function seedMessages(amountOfUsers: number) {
   const unsortedMessages = generateMessages(amountOfUsers);
   const sortedMessages = sortMessages(unsortedMessages);
-  sortedMessages.forEach(async (message) => {
+  console.log(sortedMessages);
+
+  for (const message of sortedMessages) {
     await chatFeature.service.seedMessagesTable(message);
-  });
+  }
 }
 
 function generateMessages(amountOfUsers: number) {
@@ -34,8 +36,8 @@ function generateMessages(amountOfUsers: number) {
 
 function sortMessages(unsortedMessages: MessageInsert[]) {
   return unsortedMessages.sort((a, b) => {
-    return Number(b.timestamp) - Number(a.timestamp);
+    return Number(a.timestamp) - Number(b.timestamp);
   });
 }
 
-seedMessages(5)
+seedMessages(5);
