@@ -18,3 +18,12 @@ export function calculateRemainingTokens(
 
   return { weekly, daily };
 }
+
+export function calculateTokens(numbersOfFetches: number[]) {
+  const initialTokens = { weekly: 2, daily: 1 };
+
+  return numbersOfFetches.reduce((tokens, numberOfFetches) => {
+    const refilledTokens = { ...tokens, daily: 1 };
+    return calculateRemainingTokens(numberOfFetches, refilledTokens);
+  }, initialTokens);
+}

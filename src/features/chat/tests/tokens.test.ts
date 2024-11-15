@@ -1,6 +1,6 @@
 import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
-import { calculateRemainingTokens } from "../logic/tokens";
+import { calculateRemainingTokens, calculateTokens } from "../logic/tokens";
 
 describe("Token Calculation:", () => {
   describe("by day:", () => {
@@ -47,12 +47,3 @@ describe("Token Calculation:", () => {
     });
   });
 });
-
-function calculateTokens(numbersOfFetches: number[]) {
-  const initialTokens = { weekly: 2, daily: 1 };
-
-  return numbersOfFetches.reduce((tokens, numberOfFetches) => {
-    const refilledTokens = { ...tokens, daily: 1 };
-    return calculateRemainingTokens(numberOfFetches, refilledTokens);
-  }, initialTokens);
-}
