@@ -1,7 +1,9 @@
-import { createUserService } from "../service";
+import { userFeature } from "../instance";
 
 export async function UserProfile() {
-  const service = createUserService();
-  const user = await service.getUser("John");
-  return <div>{user as unknown}</div>;
+  const user = await userFeature.userService.getUser("John Wick");
+  console.log(user[0]);
+  const userName = user[0].username;
+
+  return <div>{userName && userName}</div>;
 }

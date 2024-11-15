@@ -12,3 +12,5 @@ export function createRepository() {
     loginUserInDb,
   };
 }
+
+export type Repository = ReturnType<typeof createRepository>;
