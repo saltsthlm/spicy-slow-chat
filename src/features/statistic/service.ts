@@ -9,8 +9,11 @@ export function createService(repository: Repository) {
     async getFetchCount() {
       return await repository.getFetchCount();
     },
-    async getMessageCountPerUser(){
-      return await repository.getMessageCountPerUser()
-    }
+    async getMessageCountPerUser() {
+      return await repository.getMessageCountPerUser();
+    },
+    async getFetchCountPerUser() {
+      return await repository.getFetchCountPerUser();
+    },
   };
 }

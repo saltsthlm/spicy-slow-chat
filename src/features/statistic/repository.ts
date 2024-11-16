@@ -15,6 +15,12 @@ export function createRepository() {
         .from(messagesTable)
         .groupBy(messagesTable.username);
     },
+    async getFetchCountPerUser() {
+      return await db
+        .select({ count: count(), username: fetchTable.username })
+        .from(fetchTable)
+        .groupBy(fetchTable.username);
+    },
   };
 }
 

@@ -6,6 +6,8 @@ export async function Statistics() {
   const messagesPerUser =
     await statisticFeature.service.getMessageCountPerUser();
 
+  const fetchesPerUser = await statisticFeature.service.getFetchCountPerUser();
+
   return (
     <>
       <h1>Statistics</h1>
@@ -14,6 +16,16 @@ export async function Statistics() {
       <ul>
         Messages per User:
         {messagesPerUser.map((user) => {
+          return (
+            <li key={user.username}>
+              User: {user.username}, count: {user.count}
+            </li>
+          );
+        })}
+      </ul>
+      <ul>
+        Fetches per User:
+        {fetchesPerUser.map((user) => {
           return (
             <li key={user.username}>
               User: {user.username}, count: {user.count}
