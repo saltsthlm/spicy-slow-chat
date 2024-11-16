@@ -1,7 +1,7 @@
-import { Statistics } from "@/features/";
+import { Statistics, statisticFeature } from "@/features/";
 
 export default async function Home() {
-  const amountOfMessages = await statisticsFeature.service.getMessageCount();
-  const amountOfFetches = await statisticsFeature.service.getFetchCount();
+  const amountOfMessages = await statisticFeature.service.getMessageCount();
+  const amountOfFetches = await statisticFeature.service.getFetchCount();
   return <Statistics />;
 }
