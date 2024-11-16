@@ -1,4 +1,4 @@
-import { fetchTable, messagesTable } from "./db";
+import { fetchTable, messagesTable } from "../db";
 
 export type MessageInsert = typeof messagesTable.$inferInsert;
 export type MessageSelect = typeof messagesTable.$inferSelect;
