@@ -1,4 +1,4 @@
-import Statistics from "@/features/statistic/statistic";
+import { Statistics } from "@/features/";
 
 export default async function Home() {
   return <Statistics />;
