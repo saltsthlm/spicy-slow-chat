@@ -1,4 +1,5 @@
 import { count } from "drizzle-orm";
+import { db, fetchTable, messagesTable } from "../chat/db";
 
 export function createRepository() {
   return {

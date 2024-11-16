@@ -1,10 +1,13 @@
-export function createService() {
+import { Repository } from "./repository";
+
+export function createService(repository: Repository) {
   return {
     async getMessageCount() {
-      return []
+      return await repository.getMessageCount();
     },
+    
     async getFetchCount() {
-      return []
-    }
-  }
+      return await repository.getFetchCount();
+    },
+  };
 }
