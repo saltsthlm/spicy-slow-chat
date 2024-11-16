@@ -15,7 +15,7 @@ export async function Statistics() {
         Messages per User:
         {messagesPerUser.map((user) => {
           return (
-            <li>
+            <li key={user.username}>
               User: {user.username}, count: {user.count}
             </li>
           );
