@@ -1,6 +1,6 @@
 import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
-import { MessageInsert } from "../types";
+import { MessageInsert } from "../../db/types";
 const oneHour = 3600000;
 const latestFetchDate = BigInt(0);
 const ON_COOL_DOWN_CONTENT = "Message is on cool down";

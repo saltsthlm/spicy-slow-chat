@@ -1,5 +1,5 @@
 import { chatFeature } from "@/features";
-import { MessageInsert } from "@/features/chat/types";
+import { MessageInsert } from "@/features/db/types";
 import { faker } from "@faker-js/faker";
 
 export async function seedMessages(amountOfUsers: number) {

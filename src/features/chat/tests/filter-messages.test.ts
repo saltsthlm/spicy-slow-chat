@@ -1,6 +1,6 @@
 import { deepEqual } from "node:assert/strict";
 import { describe, it } from "node:test";
-import { MessageSelect } from "../types";
+import { MessageSelect } from "../../db/types";
 import { USER_MESSAGES } from "./test-data";
 import { filterByFetchDateAndUsername } from "../logic/filter";
 

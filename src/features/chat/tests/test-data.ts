@@ -1,4 +1,4 @@
-import { MessageSelect } from "../types";
+import { MessageSelect } from "../../db/types";
 
 export const USER_MESSAGES: MessageSelect[] = [
   {

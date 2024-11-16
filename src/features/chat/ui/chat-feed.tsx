@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { MessageSelect } from "../types";
+import { MessageSelect } from "../../db/types";
 import { Progress } from "@/components/ui/progress";
 
 export function ChatFeed({ messages }: { messages: MessageSelect[] }) {

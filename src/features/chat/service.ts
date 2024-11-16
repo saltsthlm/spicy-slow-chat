@@ -2,7 +2,7 @@ import { numberOfdaysSinceMonday } from "./helper";
 import { filterByFetchDateAndUsername } from "./logic/filter";
 import { calculateTokens } from "./logic/tokens";
 import { Repository } from "./repository";
-import { MessageInsert } from "./types";
+import { MessageInsert } from "../db/types";
 
 export function createService(repository: Repository) {
   return {
