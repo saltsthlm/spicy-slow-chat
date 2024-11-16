@@ -1,9 +1,9 @@
 export function createRepository() {
   return {
-    async getAllMessages() {
+    async getMessageCount() {
       return await db.select().from(messagesTable);
     },
-    async getAllFetches() {
+    async getFetchCount() {
       return await db.select().from(fetchTable);
     },
   };
