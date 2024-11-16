@@ -15,7 +15,7 @@ export function createService(repository: Repository) {
       return await repository.getMessageCountPerUser();
     },
     async getNewMessageCountPerFetch() {
-      return await repository.getAllFetches();
+      const allFetches = await repository.getMessageCountByTimestamp();
     },
   };
 }
