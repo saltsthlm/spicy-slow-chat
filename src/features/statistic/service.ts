@@ -15,5 +15,8 @@ export function createService(repository: Repository) {
     async getFetchCountPerUser() {
       return await repository.getFetchCountPerUser();
     },
+    async getAllFetches() {
+      return await repository.getAllFetches();
+    },
   };
 }

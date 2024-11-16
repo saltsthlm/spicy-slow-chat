@@ -21,6 +21,9 @@ export function createRepository() {
         .from(fetchTable)
         .groupBy(fetchTable.username);
     },
+    async getAllFetches() {
+      return await db.select().from(fetchTable);
+    },
   };
 }
 
