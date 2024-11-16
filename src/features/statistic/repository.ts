@@ -1,10 +1,12 @@
+import { count } from "drizzle-orm";
+
 export function createRepository() {
   return {
     async getMessageCount() {
-      return await db.select().from(messagesTable);
+      return await db.select({ count: count() }).from(messagesTable);
     },
     async getFetchCount() {
-      return await db.select().from(fetchTable);
+      return await db.select({ count: count() }).from(fetchTable);
     },
   };
 }
