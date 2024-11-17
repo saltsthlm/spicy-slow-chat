@@ -32,6 +32,14 @@ export function createRepository() {
           .where(lte(messagesTable.timestamp, timestamp))
       )[0].count;
     },
+
+    async getAllUsernames() {
+      return await db
+        .selectDistinct({
+          username: messagesTable.username,
+        })
+        .from(messagesTable);
+    },
   };
 }
 
