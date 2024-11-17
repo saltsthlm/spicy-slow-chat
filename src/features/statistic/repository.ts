@@ -1,4 +1,4 @@
-import { count, lte } from "drizzle-orm";
+import { count, eq, lte } from "drizzle-orm";
 import { db, fetchTable, messagesTable } from "../db";
 
 export function createRepository() {
@@ -21,8 +21,11 @@ export function createRepository() {
         .from(fetchTable)
         .groupBy(fetchTable.username);
     },
-    async getAllFetches() {
-      return await db.select().from(fetchTable);
+    async getAllFetchesByUsername(username: string) {
+      return await db
+        .select()
+        .from(fetchTable)
+        .where(eq(fetchTable.username, username));
     },
     async getMessageCountByTimestamp(timestamp: bigint) {
       return (
