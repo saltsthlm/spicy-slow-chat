@@ -19,17 +19,21 @@ export function createService(repository: Repository) {
       const messageCountsByTimestamp = await Promise.all(
         allFetches.map(async (fetch) => {
           return await repository.getMessageCountByTimestamp(fetch.timestamp);
-        }),
+        })
       );
 
       const newMessageCountByFetch = messageCountsByTimestamp.map(
         (currentMessageCount, index, array) => {
           const previousMessageCount = array[index - 1] || 0;
           return currentMessageCount - previousMessageCount;
-        },
+        }
       );
 
       return newMessageCountByFetch;
+    },
+
+    async getAllUsernames() {
+      return await repository.getAllUsernames();
     },
   };
 }

@@ -31,7 +31,7 @@ export function createRepository() {
     async getCountOfFetchesForUserBetween(
       username: string,
       from: bigint,
-      to: bigint,
+      to: bigint
     ) {
       return (
         await db
@@ -41,8 +41,8 @@ export function createRepository() {
             and(
               eq(fetchTable.username, username),
               gte(fetchTable.timestamp, from),
-              lt(fetchTable.timestamp, to),
-            ),
+              lt(fetchTable.timestamp, to)
+            )
           )
       ).pop()?.count;
     },
