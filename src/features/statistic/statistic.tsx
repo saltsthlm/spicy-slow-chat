@@ -7,6 +7,8 @@ export async function Statistics() {
     await statisticFeature.service.getMessageCountPerUser();
 
   const fetchesPerUser = await statisticFeature.service.getFetchCountPerUser();
+  const newMessageCountByFetch =
+    await statisticFeature.service.getNewMessageCountByFetch();
 
   return (
     <>
@@ -33,6 +35,9 @@ export async function Statistics() {
           );
         })}
       </ul>
+      <div>
+        New Message Count By Fetch: {JSON.stringify(newMessageCountByFetch)}
+      </div>
     </>
   );
 }

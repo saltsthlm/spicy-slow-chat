@@ -25,10 +25,12 @@ export function createRepository() {
       return await db.select().from(fetchTable);
     },
     async getMessageCountByTimestamp(timestamp: bigint) {
-      return await db
-        .select({ count: count() })
-        .from(messagesTable)
-        .where(lte(messagesTable.timestamp, timestamp));
+      return (
+        await db
+          .select({ count: count() })
+          .from(messagesTable)
+          .where(lte(messagesTable.timestamp, timestamp))
+      )[0].count;
     },
   };
 }

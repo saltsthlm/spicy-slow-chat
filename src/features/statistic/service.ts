@@ -14,7 +14,7 @@ export function createService(repository: Repository) {
     async getMessageCountPerUser() {
       return await repository.getMessageCountPerUser();
     },
-    async getNewMessageCountPerFetch() {
+    async getNewMessageCountByFetch() {
       const allFetches = await repository.getAllFetches();
       const messageCountsByTimestamp = await Promise.all(
         allFetches.map(async (fetch) => {
@@ -22,11 +22,14 @@ export function createService(repository: Repository) {
         }),
       );
 
-      const newMessageCountByFetch = messageCountsByTimestamp.reduce(
-        (previousCountFetch, currentCountFetch) => {
-          return currentCountFetch[] - previousCountFetch
+      const newMessageCountByFetch = messageCountsByTimestamp.map(
+        (currentMessageCount, index, array) => {
+          const previousMessageCount = array[index - 1] || 0;
+          return currentMessageCount - previousMessageCount;
         },
       );
+
+      return newMessageCountByFetch;
     },
   };
 }
