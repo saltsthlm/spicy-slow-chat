@@ -20,21 +20,22 @@ export function createService(repository: Repository) {
         return await repository.getAllFetchesByUsername(username);
       });
 
-      const allFetches = await repository.getAllFetches();
-      const messageCountsByTimestamp = await Promise.all(
-        allFetches.map(async (fetch) => {
-          return await repository.getMessageCountByTimestamp(fetch.timestamp);
-        })
-      );
+      // const allFetches = await repository.getAllFetches();
+      // const messageCountsByTimestamp = await Promise.all(
 
-      const newMessageCountByFetch = messageCountsByTimestamp.map(
-        (currentMessageCount, index, array) => {
-          const previousMessageCount = array[index - 1] || 0;
-          return currentMessageCount - previousMessageCount;
-        }
-      );
+      //   allFetches.map(async (fetch) => {
+      //     return await repository.getMessageCountByTimestamp(fetch.timestamp);
+      //   })
+      // );
 
-      return newMessageCountByFetch;
+      // const newMessageCountByFetch = messageCountsByTimestamp.map(
+      //   (currentMessageCount, index, array) => {
+      //     const previousMessageCount = array[index - 1] || 0;
+      //     return currentMessageCount - previousMessageCount;
+      //   }
+      // );
+
+      // return newMessageCountByFetch;
     },
 
     async getAllUsernames() {
