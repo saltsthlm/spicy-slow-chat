@@ -3,6 +3,7 @@ import Link from "next/link";
 const NavItems = [
   // { name: "Statistics", href: "/statistic" },
   { name: "Button", href: "/button", subpage: "/info" },
+  { name: "Form", href: "/form", subpage: "/info" },
 ];
 export function LeftNav() {
   return (

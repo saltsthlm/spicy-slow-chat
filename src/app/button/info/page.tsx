@@ -1,4 +1,4 @@
-export default function Info() {
+export default function Page() {
   return (
     <>
       <h1>Our Buttons</h1>

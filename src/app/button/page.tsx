@@ -1,3 +1,3 @@
-export default function Button() {
+export default function Page() {
   return <button>Our Button</button>;
 }
