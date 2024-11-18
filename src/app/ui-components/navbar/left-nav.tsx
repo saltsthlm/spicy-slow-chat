@@ -1,9 +1,11 @@
 import Link from "next/link";
 
 const NavItems = [
-  // { name: "Statistics", href: "/statistic" },
-  { name: "Button", href: "/button", subpage: "/info" },
-  { name: "Form", href: "/form", subpage: "/info" },
+  { name: "login", href: "/login", subpage: "" },
+  { name: "Chat", href: "/chat", subpage: "" },
+  { name: "Statistics", href: "/statistics", subpage: "" },
+  { name: "Button", href: "/design-system/button", subpage: "/info" },
+  { name: "Form", href: "/design-system/form", subpage: "/info" },
 ];
 export function LeftNav() {
   return (

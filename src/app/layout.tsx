@@ -33,16 +33,7 @@ export default function RootLayout({
           <div className="col-span-1 bg-blue-100">
             <LeftNav />
           </div>
-          <div className="col-span-8">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            perspiciatis exercitationem ducimus natus eaque perferendis corporis
-            a commodi! Consectetur illum quia quibusdam deserunt soluta
-            temporibus in id? Debitis laudantium ducimus asperiores nihil nobis
-            sed distinctio fuga adipisci modi. Est, dolorum blanditiis!
-            Praesentium, repellat iure expedita suscipit ut aspernatur
-            consequuntur labore possimus! Eligendi reprehenderit qui sit minus
-            expedita ipsam accusantium explicabo.
-          </div>
+          <div className="col-span-8"></div>
         </div>
 
         {children}
