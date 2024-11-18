@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { SideNavbar } from "./ui-components/navbar/navbar";
+import { LeftNav } from "./ui-components/navbar/left-nav";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +29,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SideNavbar />
+        <div className="grid grid-cols-10 gap-4 ">
+          <div className="col-span-1 bg-blue-100">
+            <LeftNav />
+          </div>
+          <div className="col-span-8">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+            perspiciatis exercitationem ducimus natus eaque perferendis corporis
+            a commodi! Consectetur illum quia quibusdam deserunt soluta
+            temporibus in id? Debitis laudantium ducimus asperiores nihil nobis
+            sed distinctio fuga adipisci modi. Est, dolorum blanditiis!
+            Praesentium, repellat iure expedita suscipit ut aspernatur
+            consequuntur labore possimus! Eligendi reprehenderit qui sit minus
+            expedita ipsam accusantium explicabo.
+          </div>
+        </div>
+
         {children}
       </body>
     </html>
