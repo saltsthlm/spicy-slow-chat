@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const NavItems = [
-  { name: "login", href: "/login-page", subpage: "" },
+  { name: "Login", href: "/login-page", subpage: "" },
   { name: "Chat", href: "/chat", subpage: "" },
   { name: "Statistics", href: "/statistic", subpage: "" },
   { name: "Button", href: "/design-system/button", subpage: "/info" },
