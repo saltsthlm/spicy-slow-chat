@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const NavItems = [
-  { name: "Login", href: "/login-page" },
   { name: "Statistics", href: "/statistic" },
+  { name: "Button", href: "/button" },
 ];
-export function Navbar() {
+export function SideNavbar() {
   return (
     <ul className="bg-gray-300 flex space-x-4">
       {NavItems.map((navItem, index) => {
