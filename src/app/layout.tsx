@@ -29,14 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="grid grid-cols-10 gap-4 ">
-          <div className="col-span-1 bg-blue-100">
+        <div className="grid grid-cols-8 gap-4 ">
+          <div className="col-span-1 h-screen bg-slate-600 text-white mr-2 ">
             <LeftNav />
           </div>
-          <div className="col-span-8"></div>
+          <div className="col-span-6">{children}</div>
         </div>
-
-        {children}
       </body>
     </html>
   );
