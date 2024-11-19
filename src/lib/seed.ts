@@ -2,6 +2,7 @@ import { chatFeature } from "@/features";
 import { MessageInsert } from "@/features/db/types";
 import { faker } from "@faker-js/faker";
 
+// to be moved to the chat feature at the db level.
 export async function seedMessages(amountOfUsers: number) {
   const unsortedMessages = generateMessages(amountOfUsers);
   const sortedMessages = sortMessages(unsortedMessages);

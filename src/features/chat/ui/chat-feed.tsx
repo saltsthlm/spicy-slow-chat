@@ -1,6 +1,4 @@
-import { Suspense } from "react";
 import { MessageSelect } from "../../db/types";
-import { Progress } from "@/components/ui/progress";
 
 export function ChatFeed({ messages }: { messages: MessageSelect[] }) {
   return (
@@ -12,8 +10,7 @@ export function ChatFeed({ messages }: { messages: MessageSelect[] }) {
               className="bg-primary text-primary-foreground rounded-lg px-3 py-1 text-sm my-1 self-end"
               key={message.timestamp}
             >
-            <p>{message.content}</p>
-
+              <p>{message.content}</p>
             </div>
           );
         }
@@ -23,7 +20,9 @@ export function ChatFeed({ messages }: { messages: MessageSelect[] }) {
             className="bg-secondary text-primary rounded-lg px-3 py-1 text-sm my-1 self-start"
             key={message.timestamp}
           >
-            <p className="text-sm text-start text-muted-foreground">{message.username}</p>
+            <p className="text-sm text-start text-muted-foreground">
+              {message.username}
+            </p>
             <p>{message.content}</p>
           </div>
         );
