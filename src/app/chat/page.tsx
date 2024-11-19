@@ -7,7 +7,7 @@ import {
   CardHeader,
 } from "@/features";
 import { UserProfile } from "@/features/user/ui/user-profile";
-import { ReactNode } from "react";
+import { Main } from "../ui/pages/main";
 
 const messages = await chatFeature.service.getAllMessages();
 export default async function Chat() {
@@ -37,17 +37,6 @@ export default async function Chat() {
 type Props = {
   children: ReactNode;
 };
-
-function Main({ children }: Props) {
-  return (
-    <>
-      <div className="h-screen max-w-screen-sm m-auto flex flex-col items-center py-4">
-        {children}
-      </div>
-    </>
-  );
-}
-
 function SpicyCard({ children }: Props) {
   return (
     <Card className="flex flex-col items-center m-auto px-6 w-full max-h-full overflow-y-auto flex-grow">
