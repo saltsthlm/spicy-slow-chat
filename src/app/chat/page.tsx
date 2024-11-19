@@ -7,13 +7,14 @@ import {
   CardHeader,
 } from "@/features";
 import { UserProfile } from "@/features/user/ui/user-profile";
+import { Children, ReactNode } from "react";
 
 export default async function Chat() {
   const messages = await chatFeature.service.getAllMessages();
   const numberOfTokens = await chatFeature.service.getUserTokens("John Wick");
 
   return (
-    <div className="h-screen max-w-screen-sm m-auto flex flex-col items-center py-4">
+    <>
       <UserProfile />
       {/* class name  should be inside the component  */}
       <Card className="flex flex-col items-center m-auto px-6 w-full max-h-full overflow-y-auto flex-grow">
@@ -31,6 +32,20 @@ export default async function Chat() {
         <div className="w-full"></div>
         <MessageInput />
       </Card>
-    </div>
+    </>
+  );
+}
+
+type Props = {
+  children: ReactNode;
+};
+
+function Main({ children }: Props) {
+  return (
+    <>
+      <div className="h-screen max-w-screen-sm m-auto flex flex-col items-center py-4">
+        {children}
+      </div>
+    </>
   );
 }
