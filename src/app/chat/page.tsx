@@ -17,7 +17,7 @@ export default async function Chat() {
     <Main>
       <UserProfile />
       {/* class name  should be inside the component  */}
-      <Card className="flex flex-col items-center m-auto px-6 w-full max-h-full overflow-y-auto flex-grow">
+      <SpicyCard>
         <CardHeader>You have {numberOfTokens} fetch tokens.</CardHeader>
 
         <CardTitle className="w-full">
@@ -31,7 +31,7 @@ export default async function Chat() {
         </div>
         <div className="w-full"></div>
         <MessageInput />
-      </Card>
+      </SpicyCard>
     </Main>
   );
 }
@@ -47,5 +47,13 @@ function Main({ children }: Props) {
         {children}
       </div>
     </>
+  );
+}
+
+function SpicyCard({ children }: Props) {
+  return (
+    <Card className="flex flex-col items-center m-auto px-6 w-full max-h-full overflow-y-auto flex-grow">
+      {children}
+    </Card>
   );
 }
