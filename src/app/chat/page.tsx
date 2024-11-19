@@ -8,7 +8,7 @@ import {
 } from "@/features";
 import { UserProfile } from "@/features/user/ui/user-profile";
 import { Main } from "../ui/pages/main";
-
+import { ReactNode } from "react";
 const messages = await chatFeature.service.getAllMessages();
 export default async function Chat() {
   const numberOfTokens = await chatFeature.service.getUserTokens("John Wick");
@@ -16,18 +16,14 @@ export default async function Chat() {
   return (
     <Main>
       <UserProfile />
-      {/* class name  should be inside the component  */}
       <SpicyCard>
         <CardHeader>You have {numberOfTokens} fetch tokens.</CardHeader>
-
         <CardTitle className="w-full">
-          {/* should be consistent across the whole page with the titles and headers */}
           <h2 className="scroll-m-20 border-b text-md font-normal tracking-normal first:mt-0 pt-4 pb-3 w-full">
             Spicy Members
           </h2>
         </CardTitle>
         <ChatFeedMessages />
-        <div className="w-full"></div>
         <MessageInput />
       </SpicyCard>
     </Main>
