@@ -1,3 +1,4 @@
+import { Route } from "next";
 import Link from "next/link";
 
 const NavItems = [
@@ -7,6 +8,7 @@ const NavItems = [
   { name: "Button", href: "/design-system/button", subpage: "/info" },
   { name: "Form", href: "/design-system/form", subpage: "/info" },
 ];
+
 export function LeftNav() {
   return (
     <ul className=" flex flex-col">
@@ -17,9 +19,10 @@ export function LeftNav() {
  "
             key={index}
           >
-            <Link href={navItem.href}>{navItem.name}</Link>
+            <Link href={navItem.href as Route}>{navItem.name}</Link>
+
             <strong className="ml-6 flex ">
-              <Link href={`${navItem.href}/${navItem.subpage}`}>
+              <Link href={`${navItem.href}/${navItem.subpage}` as Route}>
                 {navItem.subpage}
               </Link>
             </strong>
