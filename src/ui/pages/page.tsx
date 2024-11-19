@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Main } from "./main";
+import { PageTitle } from "./page-title";
 
 type Props = {
   title: string;
@@ -8,7 +9,7 @@ type Props = {
 export function Page({ children, title }: Props) {
   return (
     <Main>
-      <PageTitle title={title}> </PageTitle>
+      <PageTitle title={title} />
       {children}
     </Main>
   );

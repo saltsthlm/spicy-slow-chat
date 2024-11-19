@@ -7,7 +7,7 @@ import {
   CardHeader,
 } from "@/features";
 import { UserProfile } from "@/features/user/ui/user-profile";
-import { Main } from "../ui/pages/main";
+import { Main } from "../../ui/pages/main";
 import { ReactNode } from "react";
 const messages = await chatFeature.service.getAllMessages();
 export default async function Chat() {
