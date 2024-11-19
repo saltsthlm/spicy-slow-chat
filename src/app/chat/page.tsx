@@ -9,8 +9,8 @@ import {
 import { UserProfile } from "@/features/user/ui/user-profile";
 import { ReactNode } from "react";
 
+const messages = await chatFeature.service.getAllMessages();
 export default async function Chat() {
-  const messages = await chatFeature.service.getAllMessages();
   const numberOfTokens = await chatFeature.service.getUserTokens("John Wick");
 
   return (
@@ -26,9 +26,7 @@ export default async function Chat() {
             Spicy Members
           </h2>
         </CardTitle>
-        <div className="flex-grow w-full overflow-y-auto">
-          <ChatFeed messages={messages} />
-        </div>
+        <ChatFeedMessages />
         <div className="w-full"></div>
         <MessageInput />
       </SpicyCard>
@@ -55,5 +53,13 @@ function SpicyCard({ children }: Props) {
     <Card className="flex flex-col items-center m-auto px-6 w-full max-h-full overflow-y-auto flex-grow">
       {children}
     </Card>
+  );
+}
+
+function ChatFeedMessages() {
+  return (
+    <div className="flex-grow w-full overflow-y-auto">
+      <ChatFeed messages={messages} />
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { db, messagesTable } from "../db";
+import { db, messagesTable } from "@/db";
 
 export function createRepository() {
   async function loginUserInDb(username: string) {
