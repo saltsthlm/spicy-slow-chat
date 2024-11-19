@@ -1,6 +1,5 @@
 import "dotenv/config";
-import { MessageInsert } from "../db/types";
-import { messagesTable, db, fetchTable } from "../db";
+import { messagesTable, db, fetchTable, MessageInsert } from "@/db";
 import { and, count, desc, eq, gte, lt } from "drizzle-orm";
 
 export function createRepository() {

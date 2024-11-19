@@ -1,4 +1,4 @@
-import { MessageSelect } from "../../db/types";
+import { MessageSelect } from "@/db";
 
 export function ChatFeed({ messages }: { messages: MessageSelect[] }) {
   return (

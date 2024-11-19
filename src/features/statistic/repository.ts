@@ -1,5 +1,5 @@
 import { count, eq, lte } from "drizzle-orm";
-import { db, fetchTable, messagesTable } from "../db";
+import { db, fetchTable, messagesTable } from "@/db";
 
 export function createRepository() {
   return {
